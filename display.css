@@ -1,0 +1,1445 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+/* Variable CSS */
+/* Root akan merujuk pada HTML */
+:root{
+    /* 1rem = 16px dan rem akan menyesuaikan dengan pembungkusnya */
+    --header-height: 3rem;
+    --hue-color: 250; /*Ungu =250, Green= 142, Blue= 230, Pink =340 (Menggunakan HSL) */
+
+    /* HSL color mode */
+    /* Jika memakai var harus ada -- */
+    --first-color: hsl(var(--hue-color), 74%, 41%);
+    --first-color-second: hsl(var(--hue-color), 74%, 41%);
+    --first-color-alt: hsl(var(--hue-color), 57%, 53%);
+    --first-color-lighter: hsl(var(--hue-color), 92%, 85%);
+    --title-color: hsl(var(--hue-color), 8%, 15%);
+    --text-color: hsl(var(--hue-color), 8%, 45%);
+    --text-color-light: hsl(var(--hue-color), 8%, 65%);
+    --input-color: hsl(var(--hue-color), 70%,96%);
+    --body-color: hsl(var(--hue-color), 60%,99%);
+    --container-color: white;
+    --scrollbar-color: hsl(var(--hue-color), 12%,90%);
+    --scrollbar-thumb: hsl(var(--hue-color), 12%,80%);
+
+    /* Font and typography */
+    --body-font: 'Poppins', sans-serif;
+    --big-font-size: 2rem;
+    --h1-font-size: 1.5rem;
+    --h2-font-size: 1.25rem;
+    --h3-font-size: 1.125rem;
+    --normal-font-size: 0.938rem;
+    --small-font-size: 0.813rem;
+    --smaller-font-size: .75rem;
+
+    /* Font weight */
+    --font-medium: 500;
+    --font-semi-bold: 600;
+
+    /* Margen bottom 0.25rem = 4px 0.5rem = 8px 0.75rem = 12px*/
+    --mb-0-25: .25rem;
+    --mb-0-5: .5rem;
+    --mb-0-75: .75rem;
+    --mb-1: 1rem;
+    --mb-1-5: 1.5rem;
+    --mb-2: 2rem;
+    --mb-2-5: 2.5rem;
+    --mb-3: 3rem;
+
+    /* Z index = dia akan berada paling depan (tiga dimensi) */
+    /* Semakin besar nilai z-index akan semakin di depan */
+    --z-tooltip: 10;
+    --z-fixed: 100;
+    --z-modal: 1000;
+}
+
+/* Font size for large devices */
+/* Media screen digunakan untuk mendeteksi ukuran layar device yang akan dipakai */
+/* Mendeteksi ukuran layar yang lebih dari 968px dan akan menjalankan fungsinya */
+
+@media screen and (min-width: 960px){
+    :root{
+        --big-font-size: 3rem;
+        --h1-font-size: 2.25rem;
+        --h2-font-size: 1.5rem;
+        --h3-font-size: 1.25rem;
+        --normal-font-size: 1rem;
+        --small-font-size: 0.875rem;
+        --smaller-font-size: .813rem;
+    }
+}
+
+/* =============== Variable untuk tema gelap ==============*/
+/* Makin kecil yang persen terakhir maka makin gelap */
+body.tema-gelap{
+    --first-color-second: hsl(var(--hue-color), 30%, 8%);
+    --title-color: hsl(var(--hue-color), 8%, 95%);
+    --text-color: hsl(var(--hue-color), 8%, 75%);
+    --input-color: hsl(var(--hue-color), 29%, 16%);
+    --body-color: hsl(var(--hue-color), 28%, 12%);
+    --container-color: hsl(var(--hue-color), 29%, 16%);
+    --scrollbar-color: hsl(var(--hue-color), 12%, 48%);
+    --scrollbar-thumb: hsl(var(--hue-color), 12%, 36%);
+}
+
+/* ================ Tombol untuk dark/light ================*/
+.nav_btns{
+    display: flex;
+    align-items: center;
+}
+
+.change-theme{
+    color: var(--title-color);
+    font-size: 1.25rem;
+    margin-right: var(--mb-1);
+    cursor: pointer;
+}
+
+.change-theme:hover{
+    color: var(--first-color);
+}
+
+/* ========================= Base ==========================*/
+/* (*) berarti keseluruhan/semua element pada halaman*/
+/* Jika menggunakan box sizing maka padding dan border sudah termasuk lebar dan tinggi */
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Spesifisitas jika ada dua deklerasi yang memberikan properti yang berbeda pada variabel yang sama maka yang memiliki bobot algoritma terbesar akan dipilih */
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    margin: 0 0 var(--header-height) 0;
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    background-color: var(--body-color);
+    color: var(--text-color);
+}
+
+h1,h2,h3,h4{
+    color: var(--title-color);
+    font-weight: var(--font-semi-bold);
+}
+
+ul{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+img{
+    max-width: 100%;
+    height: auto;
+}
+
+/* Reusable CSS Class */
+.section{
+    padding: 2rem 0 4rem;
+}
+
+.section_title{
+    font-size: var(--h1-font-size);
+}
+
+/* Block (tulisannya menjadi kebawah)*/
+.section_subtitle{
+    display: block;
+    font-size: var(--small-font-size);
+    margin-bottom: var(--mb-3);
+}
+
+.section_title, .section_subtitle{
+    text-align: center;
+}
+
+/* Layout */
+.container{
+    max-width: 768px;
+    margin-left: var(--mb-1-5);
+    margin-right: var(--mb-1-5);
+}
+
+/* Grid digunakan untuk membuat kotak kotak pada blok (seperti kubik), grid tersusun kebawah */
+/* Grid disini bertujuan untuk membuat gambar menjadi sebelah kanan icon */
+.grid{
+    display: grid;
+    gap: 1.5rem;
+}
+
+.header{
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: var(--z-fixed);
+    background-color: var(--body-color);
+}
+
+/* Nav */
+/* Display Flex tersusun kesamping (otomatis itemnya flexible dengan container) */
+.nav{
+    max-width: 968px;
+    height: var(--header-height);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav_logo, .nav_toggle{
+    color: var(--title-color);
+    font-weight: var(--font-medium);
+}
+
+.nav_logo:hover{
+    color: var(--first-color);
+}
+
+/* Toggle yang bentuknya apps */
+.nav_toggle{
+font-size: 1.1rem;
+cursor: pointer;
+}
+
+.nav_toggle:hover{
+    color: var(--first-color);
+}
+
+/* Position fixed ketika discroll maka dia tetap berada pada tempat yang sama */
+@media screen and (max-width: 767px) {
+    .nav_menu{
+        position: fixed;
+        bottom: -100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--body-color);
+        padding: 2rem 1.5rem 4rem;
+        box-shadow: 0 -1px 4px rgba(0, 0, 0, .15);
+        border-radius: 1.5rem 1.5rem 0 0;
+        transition: .3s;
+    }
+}
+
+
+/* Grid ini memiliki 3 colom */
+.nav_list{
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.nav_link{
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    font-size: var(--small-font-size);
+    color: var(--title-color);
+    font-weight: var(--font-medium);
+}
+
+.nav_link:hover{
+    color: var(--first-color);
+}
+
+.nav_icon{
+    font-size: 1.2rem;
+}
+
+
+.nav_close{
+    position: absolute;
+    right: 1.3rem;
+    bottom: .5rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--first-color);
+}
+
+.nav_close:hover{
+    color: var(--first-color-alt);
+}
+
+/* Show menu */
+.show-menu{
+    bottom: 0;
+}
+
+/* Active link */
+/* terdapat pada nav_menu (home) */
+/* Icon menjadi berwarna ketika discroll atau di klik*/
+.active-link{
+    color: var(--first-color);
+}
+
+.scroll-header{
+    box-shadow: 0 -1px 4px rgba(0, 0, 0, .15);
+}
+
+/* =================== Home ====================== */
+.home_container{
+    gap: 1rem;
+}
+
+/* fr akan menempati tempat sisa */
+.home_content{
+    grid-template-columns: .5fr 3fr;
+    padding-top: 3.5rem;
+    align-items: center;
+}
+
+.home_social{
+    display: grid;
+    grid-template-columns: max-content;
+    row-gap: 1rem;
+}
+
+.home_social-icon{
+    font-size: 1.25rem;
+    color: var(--first-color);
+}
+
+.home_social-icon:hover{
+    color: var(--first-color-alt);
+}
+
+/* Gambarnya */
+.home_blob{
+    width: 270px;
+    fill: var(--first-color);
+}
+
+.home_blob_img{
+    width: 130px;
+}
+
+/* Membuat gambar menjadi sedikit ke kiri */
+.home_data{
+    grid-column: 1/3;
+}
+
+.home_title{
+    font-size: var(--big-font-size);
+}
+
+.home_subtitle{
+    font-size: var(--h3-font-size);
+    color: var(--text-color);
+    font-weight: var(--font-medium);
+    margin-bottom: var(--mb-0-75);
+}
+
+.home_description{
+    margin-bottom: var(--mb-2);
+}
+
+/* Menghilangkan tulisan scroll sehingga tidak memakan tempat */
+.home_scroll{
+    display: none;
+}
+
+.home_scroll-button{
+    color: var(--first-color);
+    transition: .3s;
+}
+
+/* Ketika menyentuh scroll down maka akan kebawah */
+.home_scroll-button:hover{
+    transform: translateY(0.25rem);
+}
+
+.home_scroll-mouse{
+    font-size: 2rem;
+}
+.home_scroll-name{
+    font-size: var(--small-font-size);
+    color: var(--title-color);
+    font-weight: var(--font-medium);
+    margin-right: var(--mb-0-25);
+}
+
+.home_scroll-arrow{
+    font-size: 1.25rem;
+}
+
+/* ====================== Buttons =====================*/
+/* Pada contact */
+/* Display inline (tidak bisa membuat lebar tinggi), block (tidak bisa membuat tulisan di samping yang diblock) sedangkan inline block bisa kedua duanya */
+
+.button{
+    display: inline-block;
+    background-color: var(--first-color);
+    color: #fff;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    font-weight: var(--font-medium);
+}
+
+.button:hover{
+    background-color: var(--first-color-alt);
+}
+
+.button_icon{
+    font-size: 1.25rem;
+    margin-left: var(--mb-0-5);
+    transition: .3s;
+}
+
+/* Pada contact dan scroll (membuat tulisannya menjadi ke tengah)*/ 
+/* Inline (display yang bergerak secara horizontal dan flex berarti fleksibel sesuai ukuran containernya) */
+.button-flex{
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Pada services (view more) */
+.button-small{
+    padding: .75rem 1rem;
+}
+
+.button-link{
+    padding: 0;
+    background-color: transparent;
+    color: var(--first-color);
+}
+
+.button-link:hover{
+    background-color: transparent;
+    color:var(--first-color-alt);
+}
+
+/* Pada project contact me */
+.button-white{
+    background-color: white;
+    color: var(--first-color);
+}
+
+.button-white:hover{
+    background-color: white;
+}
+
+/* ==================== About ===================== */
+/* Justify mengatur tata letak kotaknya sesuai dengan containernya */
+
+.about_img{
+    width: 200px;
+    border-radius: 0.5rem;
+    justify-self: center;
+    align-self: center;
+}
+
+.about_description{
+    text-align: center;
+    margin-bottom: var(--mb-2-5);
+}
+
+/* Justify-content dapat digunakan pada display flex (flexbox) sedangkan justify-self dan justify-items tidak dapat. */
+.about_info{
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: var(--mb-2-5);
+}
+
+.about_info-title{
+    font-size: var(--h2-font-size);
+    font-weight: var(--font-semi-bold);
+    color: var(--title-color);
+}
+
+.about_info-name{
+    font-size: var(--smaller-font-size);
+}
+
+/* Membuat tulisannya menjadi dibawah angka */
+.about_info-title, .about_info-name{
+    display: block;
+    text-align: center;
+}
+
+/* Tulisan download CV */
+.about_buttons{
+    display: flex;
+    justify-content: center;
+}
+
+/* ================== Skills ===================== */
+/* Keseluruhan skills */
+.skills_container{
+    row-gap: 0;
+}
+
+/* Judul skills */
+/* Display flex harus memiliki tataletak induk (dibungkus oleh div/parentnya) */
+
+.skills_header{
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--mb-2-5);
+    cursor: pointer;
+}
+
+.skills_icon, 
+.skills_arrow{
+    color: var(--first-color);
+    font-size: 2rem;
+}
+
+.skills_icon{
+    margin-right: var(--mb-0-75);
+}
+
+.skills_title{
+    font-size: var(--h3-font-size);
+}
+
+.skills_subtitle{
+    font-size: var(--small-font-size);
+    color: var(--text-color-light);
+}
+
+/* Margin disesuaikan dengan kontainernya/yang membungkusnya (div) */
+.skills_arrow{
+    margin-left: auto;
+    transition: .4s;
+}
+
+/* Membuat agar nama (html, css, dll) dan persentasenya menjadi lebih ke kanan */
+/* row-gap jarak antara baris yaitu antara html dengan css dll */
+.skills_list{
+    row-gap: 1.5rem;
+    padding-left: 2.7rem;
+}
+
+/* Pada judul judul skillsnya seperti html, css dll dan persennya */
+/* Justify-content mengatur element ke arah kontainer, justify-self(element di dalam parent yaitu yang bukan container atau pembungkus yang paling tinggi) justify items (item di dalam kotak). */
+.skills_titles{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--mb-0-5);
+}
+
+.skills_name{
+    font-size: var(--normal-font-size);
+    font-weight: var(--font-medium);
+}
+
+.skills_bar, .skills_persentase{
+    height: 5px;
+    border-radius: .25rem;
+}
+
+.skills_bar{
+    background-color: var(--first-color-lighter);
+}
+
+/* Display block digunakan karena terdapat pembungkusnya yaitu div skills_bar */
+.skills_persentase{
+    display: block;
+    background-color: var(--first-color);
+}
+
+.skills_html, .skills_java{
+    width: 80%;
+}
+
+.skills_css{
+    width: 75%;
+}
+
+.skills_javascript{
+    width: 85%;
+}
+
+.skills_c{
+    width: 90%;
+}
+
+.skills_python{
+    width: 50%;
+}
+
+.skills_photoshop{
+    width: 70%;
+}
+
+.skills_figma{
+    width: 30%;
+}
+
+/* Overflow hidden akan menyembunyikan sesuai dengan heightnya */
+/* Jika tanpa koma maka akan merujuk hanya pada skills_close (skills_listnya) sedangkan skills_open(skills_listnya) tidak disembunyikan*/
+.skills_close .skills_list{
+    height: 0;
+    overflow: hidden;
+}
+
+.skills_open .skills_list{
+    height: max-content;
+    margin-bottom: var(--mb-2-5);
+}
+
+.skills_open .skills_arrow{
+    transform: rotate(-180deg);
+}
+
+/* ================== Qualification ======================= */
+.qualification_tabs{
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: var(--mb-2);
+}
+
+.qualification_button{
+    font-size: var(--h3-font-size);
+    font-weight: var(--font-medium);
+    cursor: pointer;
+}
+
+.qualification_button:hover{
+    color: var(--first-color);
+}
+
+.qualification_icons{
+    font-size: 1.8rem;
+    margin-right: var(--mb-0-25);
+}
+
+/* Membuat tulisannya menjadi ada yang disebelah kanan dan juga ada yang dikiri */
+.qualification_data{
+    display: grid;
+    grid-template-columns: 1fr max-content 1fr;
+    column-gap: 1.5rem;
+}
+
+.qualification_title{
+    font-size: var(--normal-font-size);
+    font-weight: var(--font-medium);
+}
+
+.qualification_subtitle{
+    display: inline-block;
+    font-size: var(--small-font-size);
+    margin-bottom: var(--mb-1);
+}
+
+.qualification_calender{
+    font-size: var(--smaller-font-size);
+    color: var(--text-color-light);
+}
+
+.qualification_rounder{
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background-color: var(--first-color);
+}
+
+/* Transform disini digunakan untuk memindahkan garis agar sesuai dengan bulatannya*/
+.qualification_line{
+    display: block;
+    width: 1px;
+    height: 100%;
+    background-color: var(--first-color);
+    transform: translate(6px, -7px);
+}
+
+/* Membuat agar isi dari education dan work tidak terlihat */
+/* Harus memakai spasi diantara qualification dengan data-content jika memakai spasi maka merujuk semua element (parent dan inheritny) */
+.qualification [data-content]{
+    display: none;
+}
+
+/* Tidak memakai spasi sehingga hanya merujuk pada class qualification_active saja */
+.qualification_active[data-content]{
+    display: block;
+}
+
+.qualification_button.qualification_active{
+    color: var(--first-color);
+}
+
+/* ===================== Services ======================== */
+.services_container{
+    gap: 1.5rem;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* Box-shadow 0 berarti keseluruhannya tertutupi oleh shadow (kiri-kanan), 2px mengatur shadow (atas-bawah), 4px (ketebalan)*/
+.services_content{
+    position: relative;
+    background-color: var(--container-color);
+    padding: 3.5rem .5rem 1.25rem 1.5rem;
+    border-radius: .25rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .15);
+    transition: .3s;
+}
+
+.services_content:hover{
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .15);
+}
+
+.services_icon{
+    display: block;
+    font-size: 1.5rem;
+    color: var(--first-color);
+    margin-bottom: var(--mb-1);
+}
+
+.services_title{
+    font-size: var(--h3-font-size);
+    font-weight: var(--font-medium);
+    margin-bottom: var(--mb-1);
+}
+
+.services_button{
+    font-size: var(--small-font-size);
+    cursor: pointer;
+}
+
+/* Anak panahnya saja yang bergerak ke kanan */
+.services_button:hover .button_icon{
+    transform: translateX(.25rem);
+}
+
+/* Services modal (Bagian yang dibawah view more) */
+/* Fixed disini berguna untuk tidak menampilkan (services_modal) sehingga hanya bersisa Judul dan view more saja */
+/* Align-item ditengah tengah secara vertical, justify-content ditengah tengah secara horizontal. top, right, left, bottom berguna agar background color dan tampilannya yang lain muncul*/
+.services_modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+    z-index: var(--z-modal);
+    opacity: 0;
+    visibility: hidden;
+    transition: .3s;
+}
+
+/* Harus dibuat posisinya sehingga tombol (x) dapat diletakkan di container services_modal-content jika tidak maka tombol (x) akan berada pada parent yaitu services_modal */
+.services_modal-content{
+    position: relative;
+    background-color: var(--container-color);
+    padding: 1.5rem;
+    border-radius: .5rem;
+}
+
+.services_modal-services{
+    row-gap: 1rem;
+}
+
+/* Bagian icon lingkaran-centang dan tulisannya agar fleksibel sesuai kontainernya (modal-services)*/
+.services_modal-service{
+    display: flex;
+}
+
+.services_modal-title{
+    font-size: var(--h3-font-size);
+    font-weight: var(--font-medium);
+    margin-bottom: var(--mb-1-5);
+}
+
+/* Position absolute akan mengikuti container dari parentnya, jika tidak ada parent maka akan menggunakan badan document dan akan bergerak bersama jika discroll halamannya */
+.services_modal-close{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    color: var(--first-color);
+    cursor: pointer;
+}
+
+.services_modal-icon{
+    color: var(--first-color);
+    margin-right: var(--mb-0-25);
+}
+
+/* ====== Active Modal ====== */
+.active-modal{
+    opacity: 1;
+    visibility: visible;
+}
+
+/* =================== Portfolio ======================== */
+/* Initial digunakan untuk memberikan default value*/
+.portfolio_container{
+    overflow: initial;
+}
+
+.portfolio_content{
+    padding: 0 1.5rem;
+}
+
+.portfolio_image{
+    width: 265px;
+    border-radius: .5rem;
+    justify-self: center;
+}
+
+.portfolio_title{
+    font-size: var(--h3-font-size);
+    margin-bottom: var(--mb-0-5);
+}
+
+.portfolio_description{
+    margin-bottom: var(--mb-0-75);
+}
+
+.portfolio_button:hover .button_icon{
+    transform: translateX(.25rem);
+}
+.services_modal-icon{
+    color: var(--first-color);
+    margin-right: var(--mb-0-25);
+}
+
+/* ====== Active Modal ====== */
+.active-modal{
+    opacity: 1;
+    visibility: visible;
+}
+
+/* =================== Portfolio ======================== */
+/* Initial digunakan untuk memberikan default value*/
+.portfolio_container{
+    overflow: initial;
+}
+
+.portfolio_content{
+    padding: 0 1.5rem;
+}
+
+.portfolio_image{
+    width: 265px;
+    border-radius: .5rem;
+    justify-self: center;
+}
+
+.portfolio_title{
+    font-size: var(--h3-font-size);
+    margin-bottom: var(--mb-0-5);
+}
+
+.portfolio_description{
+    margin-bottom: var(--mb-0-75);
+}
+
+.portfolio_button:hover .button_icon{
+    transform: translateX(.25rem);
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after{
+    content: '';
+}
+
+.swiper_portfolio-icon{
+    color: var(--first-color);
+    font-size: 2rem;
+}
+
+/* Panahnya dibuat semakin ke kanan */
+.swiper-button-next{
+    right: -.5rem;
+}
+
+.swiper-button-prev{
+    left: -.5rem;
+}
+
+/* Terdapat pada swiper-bundle.css (bulatan kecil dibawah kata "Demo" */
+.swiper-horizontal > .swiper-pagination-bullets{
+    bottom: -2.5rem;
+}
+
+.swiper-pagination-bullet-active{
+    background-color: var(--first-color);
+}
+
+.swiper-button-prev,
+.swiper-button-next,
+.swiper-pagination-bullet{
+    outline: none;
+}
+
+/* ============== Project in Mind ================== */
+.project{
+    text-align: center;
+}
+
+/* Padding top membuat backgroundnya menjadi lebih keatas */
+.project_bg{
+    background-color: var(--first-color-second);
+    padding-top: 3rem;
+}
+
+.project_title{
+    font-size: var(--h2-font-size);
+    margin-bottom: var(--mb-0-75);
+}
+
+.project_description{
+    margin-bottom: var(--mb-1-5);
+}
+
+.project_title,
+.project_description{
+    color: white;
+}
+
+.project_image{
+    width: 232px;
+    justify-self: center;
+}
+
+/* ======================= Testimonial ======================== */
+/* Membuat tulisannya menjadi disebelah kanan gambar */
+.testimonial_data,
+.testimonial_header{
+    display: flex;
+}
+
+.testimonial_data{
+    justify-content: space-between;
+    margin-bottom: var(--mb-1);
+}
+
+.testimonial_image{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin-right: var(--mb-0-75);
+}
+
+.testimonial_nama{
+    font-size: var(--h3-font-size);
+    font-weight: var(--font-medium);
+}
+
+.testimonial_client{
+    font-size: var(--small-font-size);
+    color: var(--text-color-light);
+}
+
+.testimonial_description{
+    margin-bottom: var(--mb-2-5);
+}
+
+.testimonial_icon-star{
+    color: var(--first-color);
+}
+
+/* Karena tidak ada koma maka khusus di myswiper testimonial bukan myswiper pada portfolio */
+.mySwiper .swiper-pagination-testimonial{
+    bottom: 0;
+}
+
+/* ==================== Contact Me ======================== */
+.contact_container{
+    row-gap: 3rem;
+}
+
+.contact_information{
+    display: flex;
+    margin-bottom: var(--mb-2)
+}
+
+.contact_icon{
+    color: var(--first-color);
+    font-size: 2rem;
+    margin-right: var(--mb-0-75);
+}
+
+.contact_title{
+    font-size: var(--h3-font-size);
+    font-weight: var(--font-medium);
+}
+
+.contact_subtitle{
+    font-size: var(--small-font-size);
+    color: var(--text-color-light);
+}
+
+.contact_content{
+    background-color: var(--input-color);
+    border-radius: .5rem;
+    padding: .75rem 1rem .25rem;
+}
+
+/* Letaknya berada di atas inputan */
+.contact_label{
+    font-size: var(--smaller-font-size);
+    color: var(--title-color);
+}
+
+/* Tulisan yang diinputkan oleh user */
+.contact_input{
+    width: 100%;
+    background-color: var(--input-color);
+    color: var(--text-color);
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    border: none;
+    outline: none;
+    padding: .25rem .5rem .5rem 0;
+}
+
+/* ========================= Footer ======================== */
+.footer{
+    padding-top: 2rem;
+}
+
+.footer_container{
+    row-gap: 3.5rem;
+}
+
+.footer_bg{
+    background-color: var(--first-color-second);
+    padding: 2rem 0 3rem;
+}
+
+.font_title{
+    font-size: var(--h1-font-size);
+    margin-bottom: var(--mb-0-25);
+}
+
+.footer_subtitle{
+    font-size: var(--small-font-size);
+}
+
+/* Flex direction: colomn berarti fleksibel ke arah kolom */
+.footer_links{
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.5rem;
+}
+
+.footer_link:hover{
+    color: var(--first-color-lighter);
+}
+
+.footer_social{
+    font-size: 1.25rem;
+    margin-right: var(--mb-1-5);
+}
+
+.footer_social:hover{
+    color: var(--first-color-lighter);
+}
+
+.footer_copy{
+    font-size: var(--smaller-font-size);
+    text-align: center;
+    color: var(--text-color-light);
+    margin-top: var(--mb-3)
+}
+
+.footer_title,
+.footer_subtitle,
+.footer_link,
+.footer_social{
+    color: white;
+}
+
+/* ================= Scroll Up ======================== */
+/* Bottom dibuat -20% agar tanda panahnya tidak langsung muncul (dibalik layar) */
+.scroll-up{
+    position: fixed;
+    right: 1rem;
+    bottom: -20%;
+    background-color: var(--first-color);
+    opacity: .8;
+    padding: 0 .3rem;
+    border-radius: .4rem;
+    z-index: var(--z-tooltip);
+    transition: .4s;
+}
+
+.scroll-up:hover{
+    background-color: var(--first-color-alt);
+}
+
+.scroll-up_icon{
+    font-size: 1.5rem;
+    color: white;
+}
+
+/* Show scroll */
+.show-scroll{
+    bottom: 5rem;
+}
+
+/* ====================== Scroll Bar ======================= */
+/* Dapat dilakukan di google namun untuk firefox tidak bisa */
+/* Bentuk untuk yang batasan scrollnya */
+::-webkit-scrollbar{
+    background-color: var(--scrollbar-color);
+    font-size: .60rem;
+    border-radius: .5rem;
+}
+
+/* Bentuk untuk yang scrollnya */
+::-webkit-scrollbar-thumb{
+    background-color: var(--scrollbar-thumb);
+    border-radius: .5rem;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background-color: var(--text-color-light);
+}
+
+/* ==================== Media Queries ====================== */
+/* For small devices */
+@media screen and (max-width: 350px){
+    /* isi keseluruhannya */
+    .container{
+        margin-left: var(--mb-1);
+        margin-right: var(--mb-1);
+    }
+
+    /* Jarak antara menu nav */
+    .nav_menu{
+        padding: 2rem .25rem 4rem;
+    }
+    
+    /* Jarak antara nav atas dan bawah */
+    .nav_list{
+        column-gap: 0;
+    }
+
+    /* ukuran dari gambar, blob, icon WA dll */
+    .home_content{
+        grid-template-columns: .25fr 3fr;
+    }
+
+    /* ukuran blob background Nobel */
+    .home_blob{
+        width: 180px;
+    }
+    /* Tulisan forehand, backhand, dll di skills */
+    .skills_title{
+        font-size: var(--normal-font-size);
+    }
+
+    /* Memperbaiki garis garis yang tidak lurus pada qualification */
+    .qualification_data{
+        gap: .5rem;
+    }
+
+    /* Memberikan jarak pada pembagian services services */
+    .services_container{
+        grid-template-columns: max-content;
+        justify-content: center;
+    }
+
+    /* Memperluas contentnya menjadi lebih ke kanan dan membuat tulisannya menjadi sedikit ke kiri */
+    .services_content{
+        padding-right: 3.5rem;
+    }
+
+    /* Mengedit isi dari services (ketika di klik) */
+    .services_modal{
+        padding: 0 .5rem;
+    }
+
+    .project_image{
+        width: 200px;
+    }
+
+    .testimonial_data,
+    .testimonial_header{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .testimonial_image{
+        margin-bottom: var(--mb-0-25);
+    }
+
+/* testimonial_data(tulisan client) menjadi di tengah */
+    .testimonial_data,
+    .testimonial_description{
+        text-align: center;
+    }
+}
+
+/* For medium devices */
+@media screen and (min-width: 568px){
+    /* Membuat class home menjadi lebih ke kiri */
+    .home_content{
+        grid-template-columns: max-content 1fr 1fr;
+    }
+
+    /* Membuat tulisan menjadi di sebelah kanan gambar */
+    .home_data{
+        grid-column: initial;
+    }
+
+    /* Membuat gambar menjadi di kanan tulisan (order) */
+    .home_img{
+        order: 1;
+        justify-self: center;
+    }
+    
+    /* repeat(jumlah baris/kolom, lebar yang diinginkan). fr digunakan agar lebarnya sama dengan lebar kolom yang lain*/
+    .about_container,
+    .skills_container,
+    .portfolio_content,
+    .project_container,
+    .contact_container,
+    .footer_container{
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .qualification_sections{
+        display: grid;
+        grid-template-columns: .6fr;
+        justify-content: center;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .container{
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    body{
+        margin: 0;
+    }
+
+    /* Tulisannya dibuat menjadi lebih ke kiri */
+    .section{
+        padding: 6rem 0 2rem;
+    }
+
+    .section_subtitle{
+        margin-bottom: 4rem;
+    }
+
+    /* Nama dan icon icon seperti home, about, skills, dll */
+    .header{
+        top: 0;
+        bottom: initial;
+    }
+
+    /* main (keseluruhannya kecuali header dan footer) misal home sampai contactme */
+    .header,
+    .main,
+    .footer_container{
+        padding: 0 1rem;
+    }
+
+    .nav{
+        height: calc(var(--header-height) + 1.5rem);
+        column-gap: 1rem;
+    }
+
+    .nav_icon,
+    .nav_close,
+    .nav_toggle{
+        display: none;
+    }
+
+    .nav_list{
+        display: flex;
+        column-gap: 2rem;
+    }
+
+    /* Navigationnya menjadi lebih ke kanan */
+    .nav_menu{
+        margin-left: auto;
+    }
+
+    /* icon bulannya menjadi lebih ke kanan */
+    .change-theme{
+        margin: 0;
+    }
+
+    .home_container{
+        row-gap: 5rem;
+    }
+
+    .home_content{
+    padding-top: 5.5rem;
+    column-gap: 2rem;
+    }
+
+    .home_blob{
+        width: 270px;
+    }
+
+    .home_scroll{
+        display: block;
+    }
+
+    .home_scroll-button{
+        margin-left: 3rem;
+    }
+
+    .about_container{
+        column-gap: 5rem;
+    }
+
+    .about_img{
+        width: 350px;
+    }
+
+    .about_description{
+        text-align: initial;
+    }
+
+    .about_info{
+        justify-content: space-between;
+    }
+
+    .about_buttons{
+        justify-content: initial;
+    }
+
+   .qualification_tabs{
+    justify-content: center;
+   }
+
+   .qualification_button{
+    margin: 0 var(--mb-1);
+   }
+
+   .qualification_sections{
+    grid-template-columns: .5fr;
+   }
+
+   .services_container{
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+   }
+
+   .services_icon{
+    font-size: 2rem;
+   }
+
+   .services_content{
+    padding: 6rem 0 2rem 2.5rem;
+   }
+
+   /* isi dari services ketika di klik */
+   .services_modal-content{
+    width: 450px;
+   }
+
+   .portfolio_image{
+    width: 320px;
+   }
+
+   /* Tulisannya berada di tengah tengah gambar */
+   .portfolio_content{
+    align-items: center;
+   }
+
+   /* initial disini untuk mensejajarkan baris secara horizontal ketika content sudah melewati batas container */
+   .project{
+    text-align: initial;
+   }
+
+
+   /* Warna background bagian luarnya dihilangkan */
+   .project_bg{
+    background: none;
+   }
+
+   /* Bagian dalamnya yang diberikan warna */
+   .project_container{
+    background-color: var(--first-color-second);
+    border-radius: 1rem;
+    padding: 3rem 2.5rem 0;
+    grid-template-columns: 1fr max-content;
+    column-gap: 3rem;
+   }
+
+   .project_data{
+    padding-top: 1rem;
+   }
+    
+
+   .footer_container{
+    grid-template-columns: repeat(3, 1fr);
+   }
+
+   /* Memperluas background menjadi sedikit ke atas */
+   .footer_bg{
+    padding: 3rem 0 3.5rem;
+   }
+
+   .footer_links{
+    flex-direction: row;
+    column-gap: 2rem;
+   }
+
+   .footer_socials{
+    justify-self: flex-end;
+   }
+
+   .footer_copy{
+    margin-top: 4.5rem;
+   }
+}
+
+/* For large divices */
+@media screen and (min-width: 1024px){
+    .header,
+    .main,
+    .footer_container{
+        padding: 0;
+    }
+
+    .home_blob{
+        width: 320px;
+    }
+
+    .home_social{
+        transform: translateX(-6rem);
+    }
+    
+    .services_container{
+        grid-template-columns: repeat(3, 238px);
+    }
+
+    .portfolio_content{
+        column-gap: 5rem;
+    }
+
+    .swiper_portfolio-icon{
+        font-size: 3.5rem;
+    }
+
+    .swiper-button-prev{
+        left: -3.5rem;
+    }
+
+    .swiper-button-next{
+        right: -3.5rem;
+    }
+
+    .swiper-horizontal > .swiper-pagination-bullets{
+        bottom: -4.5rem;
+    }
+
+    .contact_form{
+        width: 460px;
+    }
+
+    .contact_inputs{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
